@@ -46,6 +46,22 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+function strip(bandName) {
+  return bandName.replace(/^(a |an |the )/i, '').trim();
+}
+// sort functions take a function with arguments a & b
+//
+// using es6 implicit returns because we're just returning in this function
+// gets rid of the brackets, extra semicolon and return keyword
+const sorted = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+// setting the inner html of our unordered list to have list items
+document.querySelector('#bands').innerHTML = sorted.map(band => `
+  <li>${band}</li>
+  `).join('');
+
+console.log(sorted);
+
 
 </script>
 
